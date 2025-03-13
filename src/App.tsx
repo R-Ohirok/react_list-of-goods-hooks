@@ -26,10 +26,10 @@ function getPreparedGoods(
   reversed: boolean,
   sortField: SortFields | null = null,
 ) {
-  let preparedGoods = [...goods];
+  const preparedGoods = [...goods];
 
   if (sortField) {
-    preparedGoods = preparedGoods.sort((good1, good2) => {
+    preparedGoods.sort((good1: string, good2: string) => {
       if (sortField === SortFields.Alphabetically) {
         return good1.localeCompare(good2);
       }
@@ -90,9 +90,7 @@ export const App = () => {
         {sortField || reversed ? (
           <button
             type="button"
-            className={cn('button is-danger', {
-              'is-light': sortField || reversed,
-            })}
+            className="button is-danger is-light"
             onClick={() => {
               setSortField(null);
               setReversed(false);
